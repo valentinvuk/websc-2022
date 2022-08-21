@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Form } from './components/form';
+import { Vote } from './components/vote';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,7 @@ function App() {
       </header>
       <main>
         <Form />
+        <Vote />
       </main>
     </>
   )

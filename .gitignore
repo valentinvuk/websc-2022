@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 .netlify/
+.env
+
+# Supabase
+**/supabase/.branches
+**/supabase/.temp
+**/supabase/.env
