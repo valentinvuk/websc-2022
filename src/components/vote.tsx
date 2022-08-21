@@ -34,14 +34,6 @@ export function Vote() {
           Please Vote.
         </label>
         <p>{`No. of likes ${count}`}</p>
-        <input
-          name="count"
-          id="count"
-          className={styles.input}
-          type="text"
-        //   onChange={(e) => setCount(e.target.value)}
-          value={count}
-        />
         
         <button className={styles.button}>Submit</button>
       </form>
