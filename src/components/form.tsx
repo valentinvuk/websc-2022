@@ -3,10 +3,28 @@ import styles from './form.module.css';
 
 export function Form() {
   const [count, setCount] = useState('');
-  
+  const [response, setResponse] = useState('');
+
+  async function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!count) {
+      return;
+    }
+
+    const res = await fetch('http://localhost:53370/.netlify/functions/count', {
+      method: 'POST',
+      body: JSON.stringify({ count }),
+    }).then((res) => res.json());
+
+    setResponse(res);
+    setCount('');
+  }
+
   return (
     <>
-      <form className={styles.form}>
+      <pre>{JSON.stringify(response, null, 2)}</pre>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <label htmlFor="name" className={styles.label}>
           Did you like this workshop?
         </label>
