@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './form.module.css';
 
 export function Vote() {
-  const [count, setCount] = useState('');
+  const [count, setCount] = useState(0);
   const [response, setResponse] = useState('');
+
+  useEffect(() => {
+    fetch('/.netlify/functions/get-vote')
+    .then(response => response.json())
+    .then(data => setCount(data ? data[0].value : 0));
+  },[count])
 
   async function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!count) {
-      return;
-    }
-
     const res = await fetch('/.netlify/functions/vote', {
       method: 'POST',
-      body: JSON.stringify({ count }),
+      body: JSON.stringify({ count: count + 1 }),
       headers: {
         'Access-Control-Allow-Origin': '*',
       }
     }).then((res) => res.json());
 
     setResponse(res);
-    setCount('');
+    setCount(count + 1);
   }
 
   return (
@@ -31,12 +33,13 @@ export function Vote() {
         <label htmlFor="name" className={styles.label}>
           Please Vote.
         </label>
+        <p>{`No. of likes ${count}`}</p>
         <input
           name="count"
           id="count"
           className={styles.input}
           type="text"
-          onChange={(e) => setCount(e.target.value)}
+        //   onChange={(e) => setCount(e.target.value)}
           value={count}
         />
         

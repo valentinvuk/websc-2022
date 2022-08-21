@@ -12,8 +12,6 @@ const {
 // Connect to our database 
 import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(DATABASE_URL, SUPABASE_SERVICE_API_KEY);
-console.log('DATABASE_URL', DATABASE_URL);
-console.log('supabse', supabase);
 
 export const handler: Handler = async (event) => {
     const { count } = JSON.parse(event.body || '{}');
