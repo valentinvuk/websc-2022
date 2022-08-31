@@ -1,9 +1,19 @@
-import { useState } from 'react'
 import './App.css'
 import { Vote } from './components/vote';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    callFetch();
+  },[]);
+
+  const callFetch = async () => {
+    const response = await fetch('https://cloudflare-serverless.princiya.workers.dev/');
+    const data = await response.json();
+    setData(data.text);
+  }
 
   return (
     <>
@@ -11,6 +21,7 @@ function App() {
         <h1>Frontend to Serverless!</h1>
       </header>
       <main>
+        <p>{`DEMO: ${data}`}</p>
         <Vote />
       </main>
     </>
