@@ -1,5 +1,5 @@
 {
-  "projectId": "websc-frontend-serverless",
+  "projectId": "websc",
   "ports": {
     "api": 54321,
     "db": 54322,
