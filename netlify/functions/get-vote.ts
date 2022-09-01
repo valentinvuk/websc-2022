@@ -6,12 +6,12 @@ config({
 });
 const {
     DATABASE_URL,
-    SUPABASE_SERVICE_API_KEY
+    API_KEY
 } = process.env;
 
 // Connect to our database 
 import { createClient } from "@supabase/supabase-js";
-const supabase = createClient(DATABASE_URL, SUPABASE_SERVICE_API_KEY);
+const supabase = createClient(DATABASE_URL, API_KEY);
 
 export const handler: Handler = async () => {
     const { data } = await supabase
