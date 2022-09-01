@@ -10,7 +10,7 @@ function App() {
   },[]);
 
   const callFetch = async () => {
-    const response = await fetch('https://cloudflare-serverless.princiya.workers.dev/');
+    const response = await fetch('https://websccloudflare.valentinvuk.workers.dev/');
     const data = await response.json();
     setData(data.text);
   }
